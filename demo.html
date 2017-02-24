@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,ul{ margin: 0; padding: 0; list-style: none;}
+        #div{ width: 1000px; height: 200px; margin: 100px auto; font-size: 30px; border: 2px solid #ccc; border-radius: 15px; background-color: #f5f5f5; padding: 30px 40px;}
+
+        #ul{ position: absolute; width: 200px; font-size: 30px;  border: 2px solid #ccc; border-radius: 8px; display: none; background-color: #f5f5f5;}
+        #ul li{ padding: 10px;}
+        #ul li:hover{ background-color: #666;}
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('div');
+            var oUl=document.getElementById('ul');
+            oDiv.oncontextmenu=function (ev){
+                var oEvent=ev || event;
+                var x =oDiv.offsetLeft+oDiv.clientWidth-oEvent.clientX;
+                var y =oDiv.offsetTop+oDiv.clientHeight-oEvent.clientY;
+                oUl.style.display='block';
+                oUl.style.left=oEvent.clientX+'px';
+                oUl.style.top=oEvent.clientY+'px';
+                if(x<oUl.clientWidth){
+                    oUl.style.left=oEvent.clientX-oUl.clientWidth+'px';
+                }
+                if(y<oUl.clientHeight){
+                    oUl.style.top=oEvent.clientY-oUl.clientHeight+'px';
+                }
+                return false;
+            };
+            document.onclick=function (){
+                oUl.style.display='none';
+            };
+        }
+    </script>
+</head>
+<body>
+<div id="div">
+   right click to see the menu ltem
+</div>
+<ul id="ul">
+    <li>Ment ltem1</li>
+    <li>Ment ltem2</li>
+</ul>
+</body>
+</html>
